@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  .container
+    h1.text-center Todo List
+
+    form#todo-form(method='POST' action='/addTodo')
+      .mb-3.d-flex.align-items-center.justify-content-between.gap-2
+        input.form-control(type='text' id='todo-name' placeholder='Enter todo name' name='todoName', required, autofocus, style='width: 50%;')
+        button.btn.btn-primary(type='submit') Add Todo
+
+    hr
+
+    each todo in todos
+      .card.mb-3
+        .card-body.d-flex.align-items-center.justify-content-between
+          form#todo-item-form(method='POST', action=`/toggleTodo/${todo.id}`)
+            input.d-none(type='text' name='todoId', value=`${todo.id}`)
+            .d-flex.align-items-center
+              if todo.completed
+                input.form-check-input(type='checkbox', id=`todo-${todo.id}`, name='completed', checked, onchange='this.form.submit()')
+              else 
+                input.form-check-input(type='checkbox', id=`todo-${todo.id}`, name='completed' onchange='this.form.submit()')
+              label.form-check-label.mx-3(for=`todo-${todo.id}`) #{todo.id} - #{todo.name}
+          form#todo-item-form(method='POST', action=`/deleteTodo/${todo.id}`)
+            button.btn.btn-danger.delete-todo(onclick='this.form.submit()') Delete
