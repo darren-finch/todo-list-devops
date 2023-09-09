@@ -9,6 +9,7 @@ import debugLib from "debug"
 const debug = debugLib("code-stuff:server")
 import http from "http"
 import dotenv from "dotenv"
+import mongoose from "mongoose"
 
 /**
  * Load environment variables from .env file.
@@ -29,6 +30,17 @@ app.set("port", port)
  */
 
 var server = http.createServer(app)
+
+/**
+ * Initialize database.
+ */
+const dbURI = `${process.env.MONGO_SERVER}/${process.env.MONGO_DB_NAME}`
+mongoose.connect(dbURI, {
+	socketTimeoutMS: 5000,
+	connectTimeoutMS: 5000,
+	serverSelectionTimeoutMS: 5000,
+	waitQueueTimeoutMS: 5000,
+})
 
 /**
  * Listen on provided port, on all network interfaces.

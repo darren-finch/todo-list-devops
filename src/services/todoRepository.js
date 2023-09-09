@@ -1,25 +1,25 @@
-import database from "../data/todoDatabase.js"
+import todoDatabase from "../data/todoDatabase.js"
 
 const getTodos = async () => {
-	return database.getTodos()
+	return todoDatabase.getTodos()
 }
 const addTodo = async (todoName) => {
 	if (!todoName) throw new Error("Todo name is required")
 
-	return database.addTodo(todoName)
+	return todoDatabase.addTodo(todoName)
 }
 const toggleTodo = async (todoId) => {
-	return database.toggleTodo(todoId)
+	return todoDatabase.toggleTodo(todoId)
 }
 const deleteTodo = async (todoId) => {
-	return database.deleteTodo(todoId)
+	return todoDatabase.deleteTodo(todoId)
 }
 
-const repository = {
+const todoRepository = {
 	getTodos,
 	addTodo,
 	toggleTodo,
 	deleteTodo,
 }
 
-export default repository
+export default todoRepository

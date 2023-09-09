@@ -1,27 +1,27 @@
 import asyncHandler from "express-async-handler"
 
-import repository from "../services/todoRepository.js"
+import todoRepository from "../services/todoRepository.js"
 
 const index = asyncHandler(async (req, res, next) => {
-	const todos = await repository.getTodos()
+	const todos = await todoRepository.getTodos()
 	res.render("index", { title: "Todos", todos: todos })
 })
 
 const addTodo = asyncHandler(async (req, res, next) => {
 	const todoName = req.body.todoName
-	await repository.addTodo(todoName)
+	await todoRepository.addTodo(todoName)
 	res.redirect("/")
 })
 
 const toggleTodo = asyncHandler(async (req, res, next) => {
 	const todoId = req.params.id
-	await repository.toggleTodo(todoId)
+	await todoRepository.toggleTodo(todoId)
 	res.redirect("/")
 })
 
 const deleteTodo = asyncHandler(async (req, res, next) => {
 	const todoId = req.params.id
-	await repository.deleteTodo(todoId)
+	await todoRepository.deleteTodo(todoId)
 	res.redirect("/")
 })
 

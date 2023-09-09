@@ -14,13 +14,13 @@ block content
     each todo in todos
       .card.mb-3
         .card-body.d-flex.align-items-center.justify-content-between
-          form#todo-item-form(method='POST', action=`/toggleTodo/${todo.id}`)
-            input.d-none(type='text' name='todoId', value=`${todo.id}`)
+          form#todo-item-form(method='POST', action=`/toggleTodo/${todo._id}`)
+            input.d-none(type='text' name='todoId', value=`${todo._id}`)
             .d-flex.align-items-center
               if todo.completed
-                input.form-check-input(type='checkbox', id=`todo-${todo.id}`, name='completed', checked, onchange='this.form.submit()')
+                input.form-check-input(type='checkbox', id=`todo-${todo._id}-toggle`, name='completed', checked, onchange='this.form.submit()')
               else 
-                input.form-check-input(type='checkbox', id=`todo-${todo.id}`, name='completed' onchange='this.form.submit()')
-              label.form-check-label.mx-3(for=`todo-${todo.id}`) #{todo.id} - #{todo.name}
-          form#todo-item-form(method='POST', action=`/deleteTodo/${todo.id}`)
+                input.form-check-input(type='checkbox', id=`todo-${todo._id}-toggle`, name='completed' onchange='this.form.submit()')
+              label.form-check-label.mx-3(for=`todo-${todo._id}-toggle`) #{todo.name}
+          form#todo-item-form(method='POST', action=`/deleteTodo/${todo._id}`)
             button.btn.btn-danger.delete-todo(onclick='this.form.submit()') Delete

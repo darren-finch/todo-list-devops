@@ -1,0 +1,1 @@
+docker run -e PORT=3000 -e MONGO_SERVER=mongodb://192.168.12.190:27017 -e MONGO_DB=todos -p 3000:3000 -d --rm --name todo-web-app todo-web-app
