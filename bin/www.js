@@ -19,10 +19,10 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 /**
- * Get port from environment and store in Express.
+ * Set port of express app.
  */
 
-var port = normalizePort(process.env.PORT || "3000")
+var port = normalizePort("3000")
 app.set("port", port)
 
 /**

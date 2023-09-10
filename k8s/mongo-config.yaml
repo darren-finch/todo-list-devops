@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: mongo-config
+data:
+    mongo-server: mongodb://mongo-service:27017
+    mongo-db: todos
